@@ -3,12 +3,12 @@ package com.okres.imageGallery.Model;
 import java.time.LocalDate;
 
 public abstract class Image {
+    private int id;
     private int size;
     private LocalDate addingdate;
+    private String type;
 
-    public Image(int size, LocalDate addingdate) {
-        this.size = size;
-        this.addingdate = addingdate;
+    public Image() {
     }
 
     public int getSize() {
@@ -27,11 +27,29 @@ public abstract class Image {
         this.addingdate = addingdate;
     }
 
+    public String getType() {
+        return this.getClass().getSimpleName();
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Image{" +
-                "size=" + size +
+                "id=" + id +
+                ", size=" + size +
                 ", addingdate=" + addingdate +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

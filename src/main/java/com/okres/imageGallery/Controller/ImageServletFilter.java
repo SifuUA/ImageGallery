@@ -1,8 +1,10 @@
 package com.okres.imageGallery.Controller;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
+@WebFilter
 public class ImageServletFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

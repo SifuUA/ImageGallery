@@ -7,4 +7,34 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <display-name>Archetype Created Web Application</display-name>
+    <!--<filter>-->
+        <!--<filter-name>imageServletFilter</filter-name>-->
+        <!--<filter-class>com.okres.imageGallery.Controller.ImageServletFilter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>imageServletFilter</filter-name>-->
+        <!--<url-pattern>/</url-pattern>-->
+    <!--</filter-mapping>-->
+
+    <listener>
+        <listener-class>com.okres.imageGallery.Controller.ImageContextListener</listener-class>
+    </listener>
+
+
+
+    <servlet>
+        <servlet-name>imageServlet</servlet-name>
+        <servlet-class>com.okres.imageGallery.Controller.ImageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>imageServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+
+
+
+
+
+
 </web-app>
