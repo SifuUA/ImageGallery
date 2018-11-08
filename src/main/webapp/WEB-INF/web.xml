@@ -8,12 +8,12 @@
          version="3.1">
     <display-name>Archetype Created Web Application</display-name>
     <!--<filter>-->
-        <!--<filter-name>imageServletFilter</filter-name>-->
-        <!--<filter-class>com.okres.imageGallery.Controller.ImageServletFilter</filter-class>-->
+    <!--<filter-name>imageServletFilter</filter-name>-->
+    <!--<filter-class>com.okres.imageGallery.Controller.ImageServletFilter</filter-class>-->
     <!--</filter>-->
     <!--<filter-mapping>-->
-        <!--<filter-name>imageServletFilter</filter-name>-->
-        <!--<url-pattern>/</url-pattern>-->
+    <!--<filter-name>imageServletFilter</filter-name>-->
+    <!--<url-pattern>/</url-pattern>-->
     <!--</filter-mapping>-->
 
     <listener>
@@ -21,20 +21,22 @@
     </listener>
 
 
-
     <servlet>
         <servlet-name>imageServlet</servlet-name>
         <servlet-class>com.okres.imageGallery.Controller.ImageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addImage</servlet-name>
+        <servlet-class>com.okres.imageGallery.Controller.AddImage</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>imageServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-
-
-
-
-
+    <servlet-mapping>
+        <servlet-name>addImage</servlet-name>
+        <url-pattern>/create</url-pattern>
+    </servlet-mapping>
 
 
 </web-app>
