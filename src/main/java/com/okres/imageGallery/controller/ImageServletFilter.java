@@ -1,4 +1,4 @@
-package com.okres.imageGallery.Controller;
+package com.okres.imageGallery.controller;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

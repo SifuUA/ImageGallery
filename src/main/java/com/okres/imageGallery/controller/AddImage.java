@@ -1,8 +1,8 @@
-package com.okres.imageGallery.Controller;
+package com.okres.imageGallery.controller;
 
-import com.okres.imageGallery.Model.Entity.BitMapImage;
-import com.okres.imageGallery.Model.Entity.VectorImage;
-import com.okres.imageGallery.Model.Image;
+import com.okres.imageGallery.model.entity.BitMapImage;
+import com.okres.imageGallery.model.entity.VectorImage;
+import com.okres.imageGallery.model.entity.Image;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

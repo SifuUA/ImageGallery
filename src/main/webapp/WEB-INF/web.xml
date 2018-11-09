@@ -9,7 +9,7 @@
     <display-name>Archetype Created Web Application</display-name>
     <!--<filter>-->
     <!--<filter-name>imageServletFilter</filter-name>-->
-    <!--<filter-class>com.okres.imageGallery.Controller.ImageServletFilter</filter-class>-->
+    <!--<filter-class>com.okres.imageGallery.controller.ImageServletFilter</filter-class>-->
     <!--</filter>-->
     <!--<filter-mapping>-->
     <!--<filter-name>imageServletFilter</filter-name>-->
@@ -17,17 +17,17 @@
     <!--</filter-mapping>-->
 
     <listener>
-        <listener-class>com.okres.imageGallery.Controller.ImageContextListener</listener-class>
+        <listener-class>com.okres.imageGallery.controller.ImageContextListener</listener-class>
     </listener>
 
 
     <servlet>
         <servlet-name>imageServlet</servlet-name>
-        <servlet-class>com.okres.imageGallery.Controller.ImageServlet</servlet-class>
+        <servlet-class>com.okres.imageGallery.controller.ImageServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>addImage</servlet-name>
-        <servlet-class>com.okres.imageGallery.Controller.AddImage</servlet-class>
+        <servlet-class>com.okres.imageGallery.controller.AddImage</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>imageServlet</servlet-name>

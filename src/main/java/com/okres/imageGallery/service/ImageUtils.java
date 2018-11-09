@@ -1,7 +1,7 @@
-package com.okres.imageGallery.Service;
+package com.okres.imageGallery.service;
 
-import com.okres.imageGallery.Model.Entity.VectorImage;
-import com.okres.imageGallery.Model.Image;
+import com.okres.imageGallery.model.entity.VectorImage;
+import com.okres.imageGallery.model.entity.Image;
 
 import java.time.LocalDate;
 
