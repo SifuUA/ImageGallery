@@ -28,49 +28,31 @@
 </c:forEach>
 <hr/>
 <form method="post">
-    Choose type <label>
-    <select name="type">
-        <option value="vector">Vector image</option>
-        <option value="bitmap">Bitmap image</option>
-    </select>
-</label>
-    <br/>
-    Image size<label><input type="number" name="size"></label><br/>
-    <input type="submit" value="Add image" name="Ok">
-</form>
-
-<table align="center">
-    <tr>
-        <form method="get" action="<c:url value='/create'/> ">
+    <table border="1">
+        <tr>
+            <td width="100">Type</td>
             <td>
-                <button>Add Image</button>
+                <select name="type" style="width: 180px">
+                    <option value="vector">Vector image</option>
+                    <option value="bitmap">Bitmap image</option>
+                </select>
             </td>
-        </form>
-        <td>
-            <button>Sort by size</button>
-        </td>
-        <%--<td><button>Find by type</button></td>--%>
-        <td><select name="types">
-            <option value="">Choose type filter</option>
-            <option value="vector">Vector image</option>
-            <option value="bitmap">Bitmap image</option>
-        </select>
-        </td>
-    </tr>
+        </tr>
+        <tr>
+            <td width="100">Size</td>
+            <td><input type="number" name="size"></td>
+        </tr>
+    </table>
+</form>
+<table width="300" align="left">
     <tr>
         <td>
+            <input type="submit" value="Add image" name="Ok">
+        </td>
+        <td align="right">
             <button>Create Movie</button>
         </td>
-        <td>
-            <button>Sort by date</button>
-        </td>
-        <td>
-            <button>Find by created date</button>
-        </td>
-        <td><input type="date" name="id" value="${requestScope.image.id}"></td>
-
     </tr>
 </table>
-<form method="get" action="<c:url value="create.jsp"/> "></form>
 </body>
 </html>
