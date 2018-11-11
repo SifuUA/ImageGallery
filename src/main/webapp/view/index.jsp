@@ -22,7 +22,7 @@
                 <c:out value="${image.type}"/>
             </td>
             <td width="100"><c:out value="${image.size}"/></td>
-            <td width="150"><c:out value="${image.addingdate}"/></td>
+            <td width="150"><c:out value="${image.addingDate}"/></td>
         </tr>
     </table>
 </c:forEach>

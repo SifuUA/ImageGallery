@@ -42,7 +42,7 @@ public class AddImage extends HttpServlet {
 
         image.setId(id);
         image.setSize(Integer.parseInt(size));
-        image.setAddingdate(LocalDate.now());
+        image.setAddingDate(LocalDate.now());
         image.setType(type);
         images.put(id, image);
 

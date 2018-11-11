@@ -12,7 +12,8 @@ public class ImageUtils {
 
         image.setId(id);
         image.setSize(size);
-        image.setAddingdate(date);
+        image.setAddingDate(date);
         return image;
     }
+
 }
