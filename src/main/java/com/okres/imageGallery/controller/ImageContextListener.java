@@ -6,7 +6,7 @@ import com.okres.imageGallery.service.ImageUtils;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -21,7 +21,7 @@ public class ImageContextListener implements ServletContextListener {
 
         images = new ConcurrentHashMap<>();
         servletContext.setAttribute("images", images);
-        final Image image = ImageUtils.createFirstImage(1, 22, LocalDate.now().minusMonths(1));
+        final Image image = ImageUtils.createFirstImage(1, 22, LocalDateTime.now());
         this.images.put(image.getId(), image);
     }
 

@@ -7,8 +7,9 @@ import java.sql.SQLException;
 public class DbConnection {
 
     private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost/test?useUnicode=true&useJDBCCompliantTimezoneShift=true" +
-            "&useLegacyDatetimeCode=false&serverTimezone=UTC\n";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/test?useSSL=false&characterEncoding=UTF-8";
+    /*"jdbc:mysql://localhost/test?useUnicode=true&useJDBCCompliantTimezoneShift=true" +
+            "&useLegacyDatetimeCode=false&serverTimezone=UTC\n";*/
     private static final String DB_USERNAME = "phpmyadmin";
     private static final String DB_PASSWORD = "root";
 

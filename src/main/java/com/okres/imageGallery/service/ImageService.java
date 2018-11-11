@@ -12,15 +12,16 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ImageService extends DbConnection implements VectorImageDao {
 
     private final Connection connection = getConnection();
 
-    private static final String ADD_IMAGE = "INSERT INTO IMAGES(TYPE, SIZE, DATE)" +
+    private static final String ADD_IMAGE = "INSERT INTO images(type, size, date)" +
             "VALUES(?,?,?)";
-    private static final String SELECT_ALL_IMAGE = "SELECT * FROM IMAGES";
-    private static final String SELECT_BY_ID = "SELECT * FROM IMAGES WHERE ID=?";
+    private static final String SELECT_ALL_IMAGE = "SELECT * FROM images";
+    private static final String SELECT_BY_ID = "SELECT * FROM images WHERE id=?";
 
 
     @Override
@@ -47,8 +48,8 @@ public class ImageService extends DbConnection implements VectorImageDao {
     @Override
     public List<Image> getAllImage() throws SQLException {
 
-        List<Image> imageList = new ArrayList<>();
-        Statement statement = null;
+        List<Image> imageList = new CopyOnWriteArrayList<>();
+            Statement statement = null;
         ResultSet resultSet;
 
         try {
@@ -98,7 +99,7 @@ public class ImageService extends DbConnection implements VectorImageDao {
         int id = resultSet.getInt("ID");
         String type = resultSet.getString("TYPE");
         int size = resultSet.getInt("SIZE");
-        Date date = resultSet.getDate("date");
+        Timestamp date = resultSet.getTimestamp("date");
 
         if (type.equalsIgnoreCase(ImageType.BITMAP.toString())) {
             image = new BitMapImage();
@@ -107,7 +108,7 @@ public class ImageService extends DbConnection implements VectorImageDao {
         image.setId(id);
         image.setType(type);
         image.setSize(size);
-        image.setAddingDate(LocalDateTime.from(date.toLocalDate()));
+        image.setAddingDate(date.toLocalDateTime());
         return image;
     }
 }
