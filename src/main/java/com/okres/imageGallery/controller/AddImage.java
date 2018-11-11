@@ -7,6 +7,7 @@ import com.okres.imageGallery.model.entity.Image;
 import com.okres.imageGallery.service.ImageService;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,9 +18,10 @@ import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
+//@WebServlet(urlPatterns = "/")
 public class AddImage extends HttpServlet {
 
-    private static final String create = "/view/create.jsp";
+    private static final String create = "/view/index.jsp";
     //private Map<Integer, Image> images;
     private ImageService images;
 
@@ -41,24 +43,23 @@ public class AddImage extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        final String type = req.getParameter("type");
+       /* final String type = req.getParameter("type");
         final String size = req.getParameter("size");
         final int id = this.id.getAndIncrement();
 
         Image image = (type.equalsIgnoreCase(ImageType.VECTOR.toString())) ?
                 new VectorImage() : new BitMapImage();
 
-        image.setId(id);
+       // image.setId(id);
         image.setSize(Integer.parseInt(size));
         image.setAddingDate(LocalDateTime.now());
         image.setType(type);
         //images.put(id, image);
         try {
-            images.addImage(image);
-        } catch (SQLException e) {
+            images.addImage(image);        } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        resp.sendRedirect(req.getContextPath() + "/");
+        resp.sendRedirect(req.getContextPath() + "/");*/
     }
 }

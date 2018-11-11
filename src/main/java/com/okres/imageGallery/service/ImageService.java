@@ -37,12 +37,12 @@ public class ImageService extends DbConnection implements VectorImageDao {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
+        }/* finally {
             if (preparedStatement != null)
                 preparedStatement.close();
             if (connection != null)
                 connection.close();
-        }
+        }*/
     }
 
     @Override
@@ -64,12 +64,12 @@ public class ImageService extends DbConnection implements VectorImageDao {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
+        }/* finally {
             if (statement != null)
                 statement.close();
             if (connection != null)
                 connection.close();
-        }
+        }*/
         return imageList;
     }
 
@@ -85,12 +85,12 @@ public class ImageService extends DbConnection implements VectorImageDao {
             image = getImage(resultSet);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
+        }/* finally {
             if (preparedStatement != null)
                 preparedStatement.close();
             if (connection != null)
                 connection.close();
-        }
+        }*/
         return image;
     }
 

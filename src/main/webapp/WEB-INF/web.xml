@@ -16,27 +16,27 @@
     <!--<url-pattern>/</url-pattern>-->
     <!--</filter-mapping>-->
 
-    <listener>
+    <!--<listener>
         <listener-class>com.okres.imageGallery.controller.ImageContextListener</listener-class>
-    </listener>
+    </listener>-->
 
 
-    <servlet>
+   <!-- <servlet>
         <servlet-name>imageServlet</servlet-name>
         <servlet-class>com.okres.imageGallery.controller.ImageServlet</servlet-class>
-    </servlet>
-    <servlet>
+    </servlet>-->
+   <!-- <servlet>
         <servlet-name>addImage</servlet-name>
         <servlet-class>com.okres.imageGallery.controller.AddImage</servlet-class>
-    </servlet>
-    <servlet-mapping>
+    </servlet>-->
+    <!--<servlet-mapping>
         <servlet-name>imageServlet</servlet-name>
         <url-pattern>/</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
+    </servlet-mapping>-->
+    <!--<servlet-mapping>
         <servlet-name>addImage</servlet-name>
         <url-pattern>/create</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
 
 </web-app>

@@ -6,10 +6,12 @@ import com.okres.imageGallery.service.ImageUtils;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+@WebListener
 public class ImageContextListener implements ServletContextListener {
 
     private Map<Integer, Image> images;
