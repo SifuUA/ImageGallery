@@ -21,29 +21,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 @WebServlet(urlPatterns = "/")
 public class ImageServlet extends HttpServlet {
 
-    //private Map<Integer, Image> images;
     private List<Image> images;
     private ImageService imageService = new ImageService();
-
-    private AtomicInteger id;
-
     private static final String index = "/view/index.jsp";
 
     @Override
     public void init() throws ServletException {
-        final Object images = getServletContext().getAttribute("images");
         try {
             this.images = imageService.getAllImage();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        //this.images = (ConcurrentHashMap<Integer, Image>) images;
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getParameter("IsortBy") != null)
-        {
+        if (req.getParameter("IsortBy") != null) {
             try {
                 images = imageService.getAllImageOrderBy(req.getParameter("IsortBy"));
             } catch (SQLException e) {

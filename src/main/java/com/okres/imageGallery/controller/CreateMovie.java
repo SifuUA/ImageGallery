@@ -12,36 +12,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-//@WebServlet(urlPatterns = "/")
-public class AddImage extends HttpServlet {
+@WebServlet(urlPatterns = "/create")
+public class CreateMovie extends HttpServlet {
 
-    private static final String create = "/view/index.jsp";
-    //private Map<Integer, Image> images;
-    private ImageService images;
-
-    private AtomicInteger id;
+    private static final String create = "/view/create.jsp";
 
     @Override
     public void init() throws ServletException {
-        //images = (Map<Integer, Image>) getServletContext().getAttribute("images");
-        images = new ImageService();
-        id = new AtomicInteger(2);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(create).forward(req, resp);
+        PrintWriter writer = resp.getWriter();
+        String[] result = req.getParameterValues("choosedImage");
+        writer.println(Arrays.toString(result));
+        //req.getRequestDispatcher(create).forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        PrintWriter writer = resp.getWriter();
+        String[] result = req.getParameterValues("choosedImage");
+        writer.println(Arrays.toString(result));
+        req.getRequestDispatcher(create).forward(req, resp);
 
        /* final String type = req.getParameter("type");
         final String size = req.getParameter("size");

@@ -20,17 +20,13 @@
 <%--</select>--%>
 <%--</label>--%>
 
-<h2>Создание нового пользователя</h2><br/>
-
-<form method="post" action="">
-    Choose type <label>
-    <select name="type">
-        <option value="vector">Vector image</option>
-        <option value="bitmap">Bitmap image</option>
-    </select>
-</label>
-    <br/>
-    Image size<label><input type="number" name="size"></label><br/>
+<h2>Your movie created from :</h2><br/>
+<form action="/">
+<%--
+    <c:out value="image"/>
+    <c:forEach var="image" items="${requestScope.result}">
+    </c:forEach>
+--%>
     <input type="submit" value="Ok" name="Ok">
 </form>
 </body>

@@ -27,7 +27,7 @@
     </servlet>-->
    <!-- <servlet>
         <servlet-name>addImage</servlet-name>
-        <servlet-class>com.okres.imageGallery.controller.AddImage</servlet-class>
+        <servlet-class>com.okres.imageGallery.controller.CreateMovievie</servlet-class>
     </servlet>-->
     <!--<servlet-mapping>
         <servlet-name>imageServlet</servlet-name>

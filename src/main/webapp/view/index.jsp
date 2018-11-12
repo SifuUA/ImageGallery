@@ -11,7 +11,6 @@
     <table border="1px" align="center" width="450">
         <tr>
             <th width="150">
-
                 <a href="?IsortBy=type" title="Press to sort">Type of image</a></th>
             <th width="150">
                 <a href="?IsortBy=size" title="Press to sort">Size in px</a></th>
@@ -20,18 +19,21 @@
         </tr>
     </table>
 </form>
-<c:forEach var="image" items="${requestScope.images}">
-    <table border="1px" align="center" width="450">
-        <tr>
-            <td width="150">
-                <input type="checkbox" name="choosedImage">
-                <c:out value="${image.type}"/>
-            </td>
-            <td width="150"><c:out value="${image.size}"/></td>
-            <td width="150"><c:out value="${image.addingDate}"/></td>
-        </tr>
-    </table>
-</c:forEach>
+<form method="get" action="create">
+    <c:forEach var="image" items="${requestScope.images}">
+        <table border="1px" align="center" width="450">
+            <tr>
+                <td width="150">
+                    <input type="checkbox" id="choosedImage" name="choosedImage" value="${image.type}">
+                    <c:out value="${image.type}"/>
+                </td>
+                <td width="150"><c:out value="${image.size}"/></td>
+                <td width="150"><c:out value="${image.addingDate}"/></td>
+            </tr>
+        </table>
+    </c:forEach>
+    <div align="center" style="margin: 20px "><input type="submit" name="Create movie"></div>
+</form>
 <hr/>
 <form method="post">
     <table border="1">
@@ -49,17 +51,19 @@
             <td><input type="number" name="size"></td>
         </tr>
     </table>
+    <input type="submit" value="Add image">
+</form>
+
+<%--<form action="">
     <table width="300" align="left">
         <tr>
             <td>
-                <input type="submit" value="Add image">
             </td>
-            <td align="right">
+            &lt;%&ndash;<td align="right">
                 <button>Create Movie</button>
-            </td>
+            </td>&ndash;%&gt;
         </tr>
     </table>
-</form>
-
+</form>--%>
 </body>
 </html>
