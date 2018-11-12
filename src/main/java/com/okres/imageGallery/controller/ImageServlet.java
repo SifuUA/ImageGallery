@@ -14,9 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
@@ -46,6 +44,11 @@ public class ImageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getParameter("IsortBy") != null)
         {
+            try {
+                images = imageService.getAllImageOrderBy(req.getParameter("IsortBy"));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         req.setAttribute("images", images);
         req.getRequestDispatcher(index).forward(req, resp);

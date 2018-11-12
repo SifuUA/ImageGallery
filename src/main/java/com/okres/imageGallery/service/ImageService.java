@@ -8,9 +8,6 @@ import com.okres.imageGallery.model.entity.VectorImage;
 import com.okres.imageGallery.model.jdbc.DbConnection;
 
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -22,6 +19,9 @@ public class ImageService extends DbConnection implements VectorImageDao {
             "VALUES(?,?,?)";
     private static final String SELECT_ALL_IMAGE = "SELECT * FROM images";
     private static final String SELECT_BY_ID = "SELECT * FROM images WHERE id=?";
+    private static final String SELECT_ALL_IMAGE_ORDERBY_TYPE = "SELECT * FROM images ORDER BY type";
+    private static final String SELECT_ALL_IMAGE_ORDERBY_DATE = "SELECT * FROM images ORDER BY date";
+    private static final String SELECT_ALL_IMAGE_ORDERBY_SIZE = "SELECT * FROM images ORDER BY size";
 
 
     @Override
@@ -49,7 +49,7 @@ public class ImageService extends DbConnection implements VectorImageDao {
     public List<Image> getAllImage() throws SQLException {
 
         List<Image> imageList = new CopyOnWriteArrayList<>();
-            Statement statement = null;
+        Statement statement = null;
         ResultSet resultSet;
 
         try {
@@ -110,5 +110,33 @@ public class ImageService extends DbConnection implements VectorImageDao {
         image.setSize(size);
         image.setAddingDate(date.toLocalDateTime());
         return image;
+    }
+
+    public List<Image> getAllImageOrderBy(String sortType) throws SQLException {
+        List<Image> imageList = new CopyOnWriteArrayList<>();
+        ResultSet resultSet;
+        PreparedStatement preparedStatement;
+
+        try {
+            if (sortType.equalsIgnoreCase("type"))
+                preparedStatement = connection.prepareStatement(SELECT_ALL_IMAGE_ORDERBY_TYPE);
+            else if (sortType.equalsIgnoreCase("size"))
+                preparedStatement = connection.prepareStatement(SELECT_ALL_IMAGE_ORDERBY_SIZE);
+            else
+                preparedStatement = connection.prepareStatement(SELECT_ALL_IMAGE_ORDERBY_DATE);
+            resultSet = preparedStatement.executeQuery();
+
+
+            while (resultSet.next()) {
+                Image image;
+
+                image = getImage(resultSet);
+                imageList.add(image);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return imageList;
     }
 }
