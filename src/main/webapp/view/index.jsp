@@ -7,18 +7,16 @@
 </head>
 <body>
 <h1 align="center">Welcome to Image Gallery!!!</h1>
-<form method="get">
+<form method="post">
     <table border="1px" align="center" width="450">
         <tr>
             <th width="150">
-                <input type="radio" name="sort" value="sortByType">
-                <a href="/" title="Press to sort" onclick="">Type of image</a></th>
+
+                <a href="?IsortBy=type" title="Press to sort">Type of image</a></th>
             <th width="150">
-                <input type="radio" name="sort" value="sortBySize">
-                <a href="/" title="Press to sort">Size in px</a></th>
+                <a href="?IsortBy=size" title="Press to sort">Size in px</a></th>
             <th width="150">
-                <input type="radio" name="sort" value="sortByDate">
-                <a href="/" title="Press to sort">Date added</a></th>
+                <a href="?IsortBy=date" title="Press to sort">Date added</a></th>
         </tr>
     </table>
 </form>
