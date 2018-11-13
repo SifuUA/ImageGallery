@@ -24,7 +24,7 @@
         <table border="1px" align="center" width="450">
             <tr>
                 <td width="150">
-                    <input type="checkbox" id="choosedImage" name="choosedImage" value="${image.type}">
+                    <input type="checkbox" name="choosedImage" value="${image.id}">
                     <c:out value="${image.type}"/>
                 </td>
                 <td width="150"><c:out value="${image.size}"/></td>
@@ -53,6 +53,7 @@
     </table>
     <input type="submit" value="Add image">
 </form>
+
 
 <%--<form action="">
     <table width="300" align="left">

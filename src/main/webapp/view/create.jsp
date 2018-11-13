@@ -20,14 +20,25 @@
 <%--</select>--%>
 <%--</label>--%>
 
-<h2>Your movie created from :</h2><br/>
-<form action="/">
-<%--
-    <c:out value="image"/>
-    <c:forEach var="image" items="${requestScope.result}">
+<div align="center">
+    <h3>Your movie consist from :</h3><br/>
+</div>
+<%--<b><%= request.getParameterValues("choosedImage") %></b>--%>
+<form action="/" method="get">
+    <c:forEach var="image" items="${requestScope.selectedImages}">
+        <table border="1px" align="center" width="450">
+            <tr>
+                <td width="150">
+                    <c:out value="${image.type}"/>
+                </td>
+                <td width="150"><c:out value="${image.size}"/></td>
+                <td width="150"><c:out value="${image.addingDate}"/></td>
+            </tr>
+        </table>
     </c:forEach>
---%>
-    <input type="submit" value="Ok" name="Ok">
+    <div align="center">
+        <input type="submit" value="Ok" name="Ok">
+    </div>
 </form>
 </body>
 </html>

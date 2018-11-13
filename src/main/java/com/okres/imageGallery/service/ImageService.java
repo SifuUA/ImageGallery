@@ -82,7 +82,9 @@ public class ImageService extends DbConnection implements VectorImageDao {
             preparedStatement = connection.prepareStatement(SELECT_BY_ID);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            image = getImage(resultSet);
+            if (resultSet.next())
+                image = getImage(resultSet);
+
         } catch (Exception e) {
             e.printStackTrace();
         }/* finally {
@@ -138,5 +140,18 @@ public class ImageService extends DbConnection implements VectorImageDao {
             e.printStackTrace();
         }
         return imageList;
+    }
+
+    public List<Image> getImageByListOfId(List<String> listOfrecivenImage) {
+        List<Image> resList = new CopyOnWriteArrayList<>();
+
+        for (String id : listOfrecivenImage) {
+            try {
+                resList.add(getImageById(Integer.parseInt(id)));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return resList;
     }
 }

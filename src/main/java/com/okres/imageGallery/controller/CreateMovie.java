@@ -16,7 +16,9 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -24,6 +26,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CreateMovie extends HttpServlet {
 
     private static final String create = "/view/create.jsp";
+    private List<String> listOfrecivenImage = new ArrayList<>();
+    private ImageService imageService = new ImageService();
+    private List<Image> selectedImages;
 
     @Override
     public void init() throws ServletException {
@@ -31,17 +36,24 @@ public class CreateMovie extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter writer = resp.getWriter();
-        String[] result = req.getParameterValues("choosedImage");
-        writer.println(Arrays.toString(result));
-        //req.getRequestDispatcher(create).forward(req, resp);
+        //PrintWriter writer = resp.getWriter();
+        //String[] result = req.getParameterValues("choosedImage");
+        //writer.println(Arrays.toString(result));
+        listOfrecivenImage = Arrays.asList(req.getParameterValues("choosedImage"));
+        selectedImages = imageService.getImageByListOfId(listOfrecivenImage);
+
+        System.out.println("AAA");
+        req.setAttribute("selectedImages", selectedImages);
+        req.getRequestDispatcher(create).forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter writer = resp.getWriter();
         String[] result = req.getParameterValues("choosedImage");
-        writer.println(Arrays.toString(result));
+        List<String> listOfImages = Arrays.asList(result);
+        for (String image : listOfImages) {}
+        //writer.println(Arrays.toString(result));
         req.getRequestDispatcher(create).forward(req, resp);
 
        /* final String type = req.getParameter("type");
