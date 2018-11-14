@@ -45,15 +45,6 @@ public class ImageServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-        /*else {
-            try {
-                this.images = imageService.getAllImage();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }*/
         req.setAttribute("images", images);
         req.getRequestDispatcher(index).forward(req, resp);
     }
@@ -71,6 +62,7 @@ public class ImageServlet extends HttpServlet {
         try {
             imageService.addImage(image);
             images = imageService.getAllImage();
+            System.out.println(Arrays.toString(images.toArray()));
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -8,6 +8,8 @@ import java.io.IOException;
 
 @WebFilter
 public class ImageServletFilter implements Filter {
+
+    private ImageService imageService = new ImageService();
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 

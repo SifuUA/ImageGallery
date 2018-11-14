@@ -29,7 +29,7 @@ public abstract class Image {
     }
 
     public String getType() {
-        return this.getClass().getSimpleName();
+        return this.type;// this.getClass().getSimpleName();
     }
 
     public void setType(String type) {

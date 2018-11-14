@@ -42,8 +42,8 @@
                 <td width="100">Type</td>
                 <td>
                     <select name="type" style="width: 180px">
-                        <option value="vector">Vector image</option>
-                        <option value="bitmap">Bitmap image</option>
+                        <option value="vector">Vector</option>
+                        <option value="bitmap">Bitmap</option>
                     </select>
                 </td>
             </tr>
