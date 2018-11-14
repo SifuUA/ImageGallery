@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -34,14 +35,11 @@ public class ImageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final String sizeFilter = req.getParameter("sizeFilter");
+        final String sizeFilterMore = req.getParameter("sizeFilterMore");
+        final String sizeFilterLess = req.getParameter("sizeFilterLess");
+
         try {
-            if (sizeFilter != null && !sizeFilter.isEmpty() && images != null)
-                images = imageService.getImageFilter(images, Integer.parseInt(sizeFilter));
-            else if (req.getParameter("IsortBy") != null)
-                images = imageService.getAllImageOrderBy(req.getParameter("IsortBy"));
-            else
-                images = imageService.getAllImage();
+            imageFilter(req, sizeFilterMore, sizeFilterLess);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -57,7 +55,7 @@ public class ImageServlet extends HttpServlet {
         Image image = (type.equalsIgnoreCase(ImageType.VECTOR.toString())) ?
                 new VectorImage() : new BitMapImage();
         image.setSize(Integer.parseInt(size));
-        image.setAddingDate(LocalDateTime.now());
+        image.setAddingDate(Timestamp.valueOf(LocalDateTime.now()));
         image.setType(type);
         try {
             imageService.addImage(image);
@@ -68,4 +66,17 @@ public class ImageServlet extends HttpServlet {
         }
         resp.sendRedirect("/");
     }
+
+    private void imageFilter(HttpServletRequest req, String sizeFilterMore, String sizeFilterLess) throws SQLException {
+        if (sizeFilterMore != null && !sizeFilterMore.isEmpty() && images != null)
+            images = imageService.getImageMoreFilter(images, Integer.parseInt(sizeFilterMore));
+        else if (sizeFilterLess != null && !sizeFilterLess.isEmpty() && images != null)
+            images = imageService.getImageLessFilter(images, Integer.parseInt(sizeFilterLess));
+        else if (req.getParameter("IsortBy") != null)
+            images = imageService.getAllImageOrderBy(req.getParameter("IsortBy"));
+        else
+            images = imageService.getAllImage();
+    }
+
+
 }

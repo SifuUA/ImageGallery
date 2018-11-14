@@ -1,12 +1,13 @@
 package com.okres.imageGallery.model.entity;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public abstract class Image {
     private int id;
     private int size;
-    private LocalDateTime addingDate;
+    private Timestamp addingDate;
     private String type;
 
     public Image() {
@@ -20,11 +21,11 @@ public abstract class Image {
         this.size = size;
     }
 
-    public LocalDateTime getAddingDate() {
+    public Timestamp getAddingDate() {
         return addingDate;
     }
 
-    public void setAddingDate(LocalDateTime addingDate) {
+    public void setAddingDate(Timestamp addingDate) {
         this.addingDate = addingDate;
     }
 

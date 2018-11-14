@@ -34,7 +34,7 @@ public class ImageService extends DbConnection implements VectorImageDao {
 
             preparedStatement.setString(1, image.getType());
             preparedStatement.setInt(2, image.getSize());
-            preparedStatement.setTimestamp(3, Timestamp.valueOf(image.getAddingDate()));
+            preparedStatement.setTimestamp(3, image.getAddingDate());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -96,28 +96,18 @@ public class ImageService extends DbConnection implements VectorImageDao {
         image.setId(id);
         image.setType(type);
         image.setSize(size);
-        image.setAddingDate(date.toLocalDateTime());
+        image.setAddingDate(date);
         return image;
     }
 
     public List<Image> getAllImageOrderBy(String sortType) throws SQLException {
         List<Image> imageList = new CopyOnWriteArrayList<>();
         ResultSet resultSet;
-        PreparedStatement preparedStatement;
+        Image image;
 
         try {
-            if (sortType.equalsIgnoreCase("type"))
-                preparedStatement = connection.prepareStatement(SELECT_ALL_IMAGE_ORDERBY_TYPE);
-            else if (sortType.equalsIgnoreCase("size"))
-                preparedStatement = connection.prepareStatement(SELECT_ALL_IMAGE_ORDERBY_SIZE);
-            else
-                preparedStatement = connection.prepareStatement(SELECT_ALL_IMAGE_ORDERBY_DATE);
-            resultSet = preparedStatement.executeQuery();
-
-
+            resultSet = getResultSet(sortType);
             while (resultSet.next()) {
-                Image image;
-
                 image = getImage(resultSet);
                 imageList.add(image);
             }
@@ -125,6 +115,19 @@ public class ImageService extends DbConnection implements VectorImageDao {
             e.printStackTrace();
         }
         return imageList;
+    }
+
+    private ResultSet getResultSet(String sortType) throws SQLException {
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        if (sortType.equalsIgnoreCase("type"))
+            preparedStatement = connection.prepareStatement(SELECT_ALL_IMAGE_ORDERBY_TYPE);
+        else if (sortType.equalsIgnoreCase("size"))
+            preparedStatement = connection.prepareStatement(SELECT_ALL_IMAGE_ORDERBY_SIZE);
+        else
+            preparedStatement = connection.prepareStatement(SELECT_ALL_IMAGE_ORDERBY_DATE);
+        resultSet = preparedStatement.executeQuery();
+        return resultSet;
     }
 
     public List<Image> getImageByListOfId(List<String> listOfrecivenImage) {
@@ -140,8 +143,13 @@ public class ImageService extends DbConnection implements VectorImageDao {
         return resList;
     }
 
-    public List<Image> getImageFilter(List<Image> images, Integer sizeFilter) {
+    public List<Image> getImageMoreFilter(List<Image> images, Integer sizeFilter) {
         return images.stream().filter(image -> image.getSize() > sizeFilter).
                 collect(Collectors.toList());
+    }
+
+    public List<Image> getImageLessFilter(List<Image> images, int size) {
+        return images.stream().filter(image -> image.getSize() < size)
+                .collect(Collectors.toList());
     }
 }
