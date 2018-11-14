@@ -35,36 +35,31 @@
     <div align="center" style="margin: 20px "><input type="submit" name="Create movie"></div>
 </form>
 <hr/>
-<form method="post">
-    <table border="1">
-        <tr>
-            <td width="100">Type</td>
-            <td>
-                <select name="type" style="width: 180px">
-                    <option value="vector">Vector image</option>
-                    <option value="bitmap">Bitmap image</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td width="100">Size</td>
-            <td><input type="number" name="size"></td>
-        </tr>
-    </table>
-    <input type="submit" value="Add image">
+<div style="float: left; margin-left: 50px; margin-top: 20px"">
+    <form method="post">
+        <table border="1">
+            <tr>
+                <td width="100">Type</td>
+                <td>
+                    <select name="type" style="width: 180px">
+                        <option value="vector">Vector image</option>
+                        <option value="bitmap">Bitmap image</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td width="100">Size</td>
+                <td><input type="number" name="size"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Add image">
+    </form>
+</div>
+<div style="float: right; margin-right: 50px; margin-top: 20px" >
+<form action="/" method="get">
+    Size filter <input type="number" name="sizeFilter">
+    <input type="submit" value="OK">
 </form>
-
-
-<%--<form action="">
-    <table width="300" align="left">
-        <tr>
-            <td>
-            </td>
-            &lt;%&ndash;<td align="right">
-                <button>Create Movie</button>
-            </td>&ndash;%&gt;
-        </tr>
-    </table>
-</form>--%>
+</div>
 </body>
 </html>

@@ -10,6 +10,7 @@ import com.okres.imageGallery.model.jdbc.DbConnection;
 import java.sql.*;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
 
 public class ImageService extends DbConnection implements VectorImageDao {
 
@@ -26,7 +27,7 @@ public class ImageService extends DbConnection implements VectorImageDao {
 
     @Override
     public void addImage(Image image) throws SQLException {
-        PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement;
 
         try {
             preparedStatement = connection.prepareStatement(ADD_IMAGE);
@@ -37,19 +38,14 @@ public class ImageService extends DbConnection implements VectorImageDao {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        }/* finally {
-            if (preparedStatement != null)
-                preparedStatement.close();
-            if (connection != null)
-                connection.close();
-        }*/
+        }
     }
 
     @Override
     public List<Image> getAllImage() throws SQLException {
 
         List<Image> imageList = new CopyOnWriteArrayList<>();
-        Statement statement = null;
+        Statement statement;
         ResultSet resultSet;
 
         try {
@@ -64,18 +60,13 @@ public class ImageService extends DbConnection implements VectorImageDao {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }/* finally {
-            if (statement != null)
-                statement.close();
-            if (connection != null)
-                connection.close();
-        }*/
+        }
         return imageList;
     }
 
     @Override
     public Image getImageById(int id) throws SQLException {
-        PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement;
         Image image = null;
 
         try {
@@ -87,12 +78,7 @@ public class ImageService extends DbConnection implements VectorImageDao {
 
         } catch (Exception e) {
             e.printStackTrace();
-        }/* finally {
-            if (preparedStatement != null)
-                preparedStatement.close();
-            if (connection != null)
-                connection.close();
-        }*/
+        }
         return image;
     }
 
@@ -135,7 +121,6 @@ public class ImageService extends DbConnection implements VectorImageDao {
                 image = getImage(resultSet);
                 imageList.add(image);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -153,5 +138,10 @@ public class ImageService extends DbConnection implements VectorImageDao {
             }
         }
         return resList;
+    }
+
+    public List<Image> getImageFilter(List<Image> images, Integer sizeFilter) {
+        return images.stream().filter(image -> image.getSize() > sizeFilter).
+                collect(Collectors.toList());
     }
 }

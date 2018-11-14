@@ -19,12 +19,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @WebServlet(urlPatterns = "/create")
 public class CreateMovie extends HttpServlet {
-
     private static final String create = "/view/create.jsp";
     private List<String> listOfrecivenImage = new ArrayList<>();
     private ImageService imageService = new ImageService();
@@ -36,43 +33,14 @@ public class CreateMovie extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //PrintWriter writer = resp.getWriter();
-        //String[] result = req.getParameterValues("choosedImage");
-        //writer.println(Arrays.toString(result));
         listOfrecivenImage = Arrays.asList(req.getParameterValues("choosedImage"));
         selectedImages = imageService.getImageByListOfId(listOfrecivenImage);
-
-        System.out.println("AAA");
         req.setAttribute("selectedImages", selectedImages);
         req.getRequestDispatcher(create).forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter writer = resp.getWriter();
-        String[] result = req.getParameterValues("choosedImage");
-        List<String> listOfImages = Arrays.asList(result);
-        for (String image : listOfImages) {}
-        //writer.println(Arrays.toString(result));
-        req.getRequestDispatcher(create).forward(req, resp);
 
-       /* final String type = req.getParameter("type");
-        final String size = req.getParameter("size");
-        final int id = this.id.getAndIncrement();
-
-        Image image = (type.equalsIgnoreCase(ImageType.VECTOR.toString())) ?
-                new VectorImage() : new BitMapImage();
-
-       // image.setId(id);
-        image.setSize(Integer.parseInt(size));
-        image.setAddingDate(LocalDateTime.now());
-        image.setType(type);
-        //images.put(id, image);
-        try {
-            images.addImage(image);        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        resp.sendRedirect(req.getContextPath() + "/");*/
     }
 }

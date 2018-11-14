@@ -36,7 +36,7 @@
             </tr>
         </table>
     </c:forEach>
-    <div align="center">
+    <div align="center" style="margin: 20px">
         <input type="submit" value="Ok" name="Ok">
     </div>
 </form>

@@ -15,12 +15,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 
 @WebServlet(urlPatterns = "/")
 public class ImageServlet extends HttpServlet {
-
     private List<Image> images;
     private ImageService imageService = new ImageService();
     private static final String index = "/view/index.jsp";
@@ -36,16 +34,28 @@ public class ImageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getParameter("IsortBy") != null) {
-            try {
+        final String sizeFilter = req.getParameter("sizeFilter");
+        try {
+            if (sizeFilter != null && !sizeFilter.isEmpty() && images != null)
+                images = imageService.getImageFilter(images, Integer.parseInt(sizeFilter));
+            else if (req.getParameter("IsortBy") != null)
                 images = imageService.getAllImageOrderBy(req.getParameter("IsortBy"));
+            else
+                images = imageService.getAllImage();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        /*else {
+            try {
+                this.images = imageService.getAllImage();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
         req.setAttribute("images", images);
         req.getRequestDispatcher(index).forward(req, resp);
-
     }
 
     @Override
@@ -55,12 +65,9 @@ public class ImageServlet extends HttpServlet {
 
         Image image = (type.equalsIgnoreCase(ImageType.VECTOR.toString())) ?
                 new VectorImage() : new BitMapImage();
-
-        // image.setId(id);
         image.setSize(Integer.parseInt(size));
         image.setAddingDate(LocalDateTime.now());
         image.setType(type);
-        //images.put(id, image);
         try {
             imageService.addImage(image);
             images = imageService.getAllImage();
