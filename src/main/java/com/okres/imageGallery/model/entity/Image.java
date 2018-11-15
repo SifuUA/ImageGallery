@@ -1,8 +1,6 @@
 package com.okres.imageGallery.model.entity;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public abstract class Image {
     private int id;

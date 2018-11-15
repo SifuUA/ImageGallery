@@ -120,6 +120,7 @@ public class ImageService extends DbConnection implements VectorImageDao {
     private ResultSet getResultSet(String sortType) throws SQLException {
         PreparedStatement preparedStatement;
         ResultSet resultSet;
+
         if (sortType.equalsIgnoreCase("type"))
             preparedStatement = connection.prepareStatement(SELECT_ALL_IMAGE_ORDERBY_TYPE);
         else if (sortType.equalsIgnoreCase("size"))

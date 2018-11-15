@@ -60,7 +60,6 @@ public class ImageServlet extends HttpServlet {
         try {
             imageService.addImage(image);
             images = imageService.getAllImage();
-            System.out.println(Arrays.toString(images.toArray()));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -77,6 +76,4 @@ public class ImageServlet extends HttpServlet {
         else
             images = imageService.getAllImage();
     }
-
-
 }

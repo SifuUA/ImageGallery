@@ -14,7 +14,7 @@
                 <a href="?IsortBy=type" title="Press to sort">Type of image</a></th>
             <th width="150">
                 <a href="?IsortBy=size" title="Press to sort">Size in px</a></th>
-            <th width="150">
+            <th width="200">
                 <a href="?IsortBy=date" title="Press to sort">Date added</a></th>
         </tr>
     </table>
@@ -28,7 +28,7 @@
                     <c:out value="${image.type}"/>
                 </td>
                 <td width="150"><c:out value="${image.size}"/></td>
-                <td width="150"><c:out value="${image.addingDate}"/></td>
+                <td width="200"><c:out value="${image.addingDate}"/></td>
             </tr>
         </table>
     </c:forEach>
@@ -61,7 +61,6 @@
         <b>Size > </b><input type="number" name="sizeFilterMore">
         <b>Size < </b><input type="number" name="sizeFilterLess">
         <input type="submit" value="OK">
-
     </form>
 </div>
 </body>

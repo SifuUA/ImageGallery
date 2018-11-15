@@ -1,8 +1,5 @@
 package com.okres.imageGallery.controller;
 
-import com.okres.imageGallery.model.entity.BitMapImage;
-import com.okres.imageGallery.model.entity.ImageType;
-import com.okres.imageGallery.model.entity.VectorImage;
 import com.okres.imageGallery.model.entity.Image;
 import com.okres.imageGallery.service.ImageService;
 
@@ -12,10 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
